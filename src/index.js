@@ -70,10 +70,10 @@ app.put('/users/:id', async (req, res) => {
                 error: "Usuario no encontrado"
              });
         }
-        res.status(200).json(updateUser);
+        res.status(200).json({message: "Usuario actualizado"});
     } catch (error) {
         res.status(500).json({ 
-            erro: "Error al actualizar el usuario"
+            error: "Error al actualizar el usuario"
          });
     }   
 });
@@ -87,10 +87,12 @@ app.delete('/users/:id', async (req, res) => {
                 error: "Usuario no encontrado"
              });
         }
-        res.status(200).json(deleteUser);
+        res.status(200).json(
+            {message: "Usuario eliminado"}
+        );
     } catch (error) {
         res.status(500).json({ 
-            erro: "Error al eliminar el usuario"
+            error: "Error al eliminar el usuario"
          });
     }
 });
@@ -104,7 +106,7 @@ app.post('/groups', async (req, res) => {
         res.status(201).json(saveGroup);
     } catch (error) {
         res.status(500).json({ 
-            erro: "Error al crear un nuevo grupo"
+            error: "Error al crear un nuevo grupo"
          });
     }
 });
@@ -116,7 +118,7 @@ app.get('/groups', async (req, res) => {
         res.status(200).json(groups);
     } catch (error) {
         res.status(500).json({ 
-            erro: "Error al obtener los grupos"
+            error: "Error al obtener los grupos"
          });
     }
 });
@@ -133,7 +135,7 @@ app.get('/groups/:id', async (req, res) => {
         res.status(200).json(group);
     } catch (error) {
         res.status(500).json({ 
-            erro: "Error al obtener el grupo"
+            error: "Error al obtener el grupo"
          });
     }
 });
@@ -147,10 +149,30 @@ app.put('/groups/:id', async (req, res) => {
                 error: "Grupo no encontrado"
              });
         }
-        res.status(200).json(updateGroup);
+        res.status(200).json(
+            {message: "Grupo actualizado"}
+        );
     } catch (error) {   
         res.status(500).json({ 
-            erro: "Error al actualizar el grupo"
+            error: "Error al actualizar el grupo"
+         });
+    }
+});
+
+//Delete group by id
+app.delete('/groups/:id', async (req, res) => {
+    try {
+        const deleteGroup = await Group.findByIdAndDelete(req.params.id);
+        if(!deleteGroup){
+            return res.status(404).json({ 
+                error: "Grupo no encontrado"
+             });
+        }
+        res.status(200).json(
+            {message: "Grupo eliminado"});
+    } catch (error) {
+        res.status(500).json({ 
+            error: "Error al eliminar el grupo"
          });
     }
 });
@@ -208,7 +230,9 @@ app.put('/events/:id', async (req, res) => {
                 error: "Evento no encontrado"
              });
         }   
-        res.status(200).json(updateEvent);
+        res.status(200).json(
+            {message: "Evento actualizado"}
+        );
     } catch (error) {
         res.status(500).json({ 
             erro: "Error al actualizar el evento"
@@ -225,7 +249,9 @@ app.delete('/events/:id', async (req, res) => {
                 error: "Evento no encontrado"
              });
         }
-        res.status(200).json(deleteEvent);
+        res.status(200).json(
+            {message: "Evento eliminado"}
+        );
     } catch (error) {
         res.status(500).json({ 
             erro: "Error al eliminar el evento"

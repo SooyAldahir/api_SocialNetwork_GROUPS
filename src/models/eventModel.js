@@ -10,9 +10,9 @@ const eventSchema = new mongoose.Schema({
       type: String, 
       required: true }, 
     description: String,  
-    group: { 
+    groups: [{ 
       type: mongoose.Schema.Types.ObjectId, 
-      ref: 'Group' },
+      ref: 'Group' }],
     participants: [{  
       type: mongoose.Schema.Types.ObjectId, 
        ref: 'User'
