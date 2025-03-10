@@ -192,7 +192,7 @@ bash
           "67ca4118f791f5b6d20395fb",
           "67ca414bf791f5b6d20395fd"
         ]
-  | }
+  }
 
     ```
 - **Obtener todos los eventos** (`GET /events`)
@@ -209,7 +209,7 @@ bash
           "67ca4118f791f5b6d20395fb",
           "67ca414bf791f5b6d20395fd"
         ]
-  | }
+  }
 
     ```
 - **Eliminar** (`DELETE /events/:id`)
